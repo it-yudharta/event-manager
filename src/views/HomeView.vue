@@ -34,7 +34,7 @@ onMounted(() => {
         <li v-for="event in events" :key="event.id">
           <div>{{ event.name }}</div>
           <div>{{ event.place }}</div>
-          <div>{{ event.time }}</div>
+          <div>{{ new Date(Number(event.time) * 1000).toLocaleString() }}</div>
         </li>
       </ul>
     </div>
