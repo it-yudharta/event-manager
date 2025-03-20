@@ -10,6 +10,16 @@ const router = createRouter({
       component: HomeView,
     },
     {
+      path: '/event',
+      name: 'create-event',
+      component: () => import('../views/CreateEventView.vue'),
+    },
+    {
+      path: '/event/:id',
+      name: 'edit-event',
+      component: () => import('../views/EditEventView.vue'),
+    },
+    {
       path: '/about',
       name: 'about',
       // route level code-splitting
