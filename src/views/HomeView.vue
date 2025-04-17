@@ -3,7 +3,7 @@ import { ref, onMounted } from 'vue'
 import { RouterLink } from 'vue-router'
 
 interface Event {
-  id: number
+  id: string
   name: string
   place: string
   time: string
@@ -21,6 +21,14 @@ onMounted(() => {
   fetchEvents()
 })
 
+const removeEvent = async (id: string) => {
+  const response = await fetch(`/api/events/${id}`, {
+    method: 'DELETE',
+  })
+  if (response.ok) {
+    fetchEvents()
+  }
+}
 </script>
 
 <template>
@@ -37,6 +45,9 @@ onMounted(() => {
           <div>{{ new Date(Number(event.time) * 1000).toLocaleString() }}</div>
           <div>
             <RouterLink :to="`/event/${event.id}`">Edit</RouterLink>
+          </div>
+          <div>
+            <button @click="removeEvent(event.id)">Hapus Data</button>
           </div>
         </li>
       </ul>
