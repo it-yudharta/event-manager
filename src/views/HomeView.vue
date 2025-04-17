@@ -35,6 +35,9 @@ onMounted(() => {
           <div>{{ event.name }}</div>
           <div>{{ event.place }}</div>
           <div>{{ new Date(Number(event.time) * 1000).toLocaleString() }}</div>
+          <div>
+            <RouterLink :to="`/event/${event.id}`">Edit</RouterLink>
+          </div>
         </li>
       </ul>
     </div>
