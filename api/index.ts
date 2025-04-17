@@ -20,4 +20,29 @@ app.post('/api/events', async (c) => {
   return c.json(newEvent)
 })
 
+app.get('/api/events/:id', async (c) => {
+  const eventId = c.req.param('id')
+  let { results } = await c.env.DB.prepare('SELECT * FROM events WHERE id = ?').bind(eventId).all()
+  return c.json(results[0])
+})
+
+app.put('/api/events/:id', async (c) => {
+  const eventId = c.req.param('id')
+
+  const input = await c.req.json<any>()
+  const query = `UPDATE events SET name = "${input.name}", place = "${input.place}", time = ${input.time} WHERE id = "${eventId}"`
+  const event = await c.env.DB.exec(query)
+
+  return c.json(event)
+})
+
+app.delete('/api/events/:id', async (c) => {
+  const eventId = c.req.param('id')
+
+  const query = `DELETE FROM events WHERE id = "${eventId}"`
+  const event = await c.env.DB.exec(query)
+
+  return c.json(event)
+})
+
 export default app
