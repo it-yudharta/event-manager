@@ -45,4 +45,6 @@ app.delete('/api/events/:id', async (c) => {
   return c.json(event)
 })
 
+app.get('*', (c) => c.env.ASSETS.fetch(c.req.raw))
+
 export default app
