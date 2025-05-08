@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
+import { Button } from '@/components/ui/button'
+import { Input } from '@/components/ui/input'
 
 const router = useRouter();
 
@@ -27,24 +29,24 @@ const saveData = async () => {
 
 
 <template>
-    <div class="container px-4 py-6 mx-auto">
-        <h1 class="text-lg sm:text-2xl">Buat Event Baru</h1>
+    <div class="container px-4 py-6 mx-auto w-lg">
+        <h1 class="text-lg sm:text-2xl text-center">Buat Event Baru</h1>
         <form @submit.prevent="saveData">
             <div class="w-full">
                 <label>Nama</label>
-                <input type="text" v-model="name" class="border">
+                <Input type="text" v-model="name" />
             </div>
             <div>
                 <label>Tempat</label>
-                <input type="text" v-model="place" class="border">
+                <Input type="text" v-model="place" />
             </div>
             <div>
                 <label>Waktu</label>
-                <input type="datetime-local" v-model="time" class="border">
+                <Input type="datetime-local" v-model="time" />
             </div>
     
             <div class="mt-3">
-                <input type="submit" class="rounded-full text-white bg-sky-500 py-2 px-6 hover:bg-sky-800 hover:cursor-pointer">
+                <Button type="submit">Simpan</Button>
             </div>
         </form>
     </div>
